@@ -8,7 +8,7 @@ object Main {
   def main(arg: Array[String]) = {
     val cfg = new LwjglApplicationConfiguration()
     cfg.title = "puzzleplatform"
-    cfg.useGL20 = false
+    cfg.useGL20 = true
     cfg.width = 800
     cfg.height = 480
     cfg.resizable = false
