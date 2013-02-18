@@ -1,6 +1,7 @@
 package com.rathboma.playpen.box2dcharacter
 
 import com.rathboma.playpen.PlaypenGame
+import com.rathboma.playpen.menu.MenuScreen
 
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.{Gdx, Screen}
@@ -59,7 +60,7 @@ class Box2DPlayerScreen(game: PlaypenGame) extends InputAdapter with Screen {
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT)
     cam.position.set(player.position.x, player.position.y, 0)
     cam.update
-    cam.apply(Gdx.gl10)
+    // cam.apply(Gdx.gl11)
     matrix.set(cam.combined)
     renderer.render(world, matrix)
     cam.project(point.set(player.position.x, player.position.y, 0))
@@ -118,6 +119,7 @@ class Box2DPlayerScreen(game: PlaypenGame) extends InputAdapter with Screen {
     if (keycode == Keys.W) shouldJump = true
     if (keycode == Keys.A) leftPressed = true
     if (keycode == Keys.D) rightPressed = true
+    if (keycode == Keys.ESCAPE) game.setScreen(new MenuScreen(game))
     false
   }
 

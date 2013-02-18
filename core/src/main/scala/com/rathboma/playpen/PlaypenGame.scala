@@ -6,11 +6,13 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
 import com.rathboma.playpen.box2dcharacter.Box2DPlayerScreen
 import com.rathboma.playpen.animation.SpriteAnimationScreen
+import com.rathboma.playpen.menu.MenuScreen
 
-class PlaypenGame extends Game {
+
+class PlaypenGame(val width: Int, val height: Int) extends Game {
 
   override def create {
-    setScreen(new SpriteAnimationScreen())
+    setScreen(new MenuScreen(this))
   }
 
 }

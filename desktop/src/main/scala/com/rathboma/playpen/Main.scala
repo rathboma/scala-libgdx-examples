@@ -13,6 +13,6 @@ object Main {
     cfg.height = 480
     cfg.resizable = false
     
-    new LwjglApplication(new PlaypenGame(), cfg)
+    new LwjglApplication(new PlaypenGame(cfg.width, cfg.height), cfg)
   }
 }
