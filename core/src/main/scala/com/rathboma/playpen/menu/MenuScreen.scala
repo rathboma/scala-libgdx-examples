@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.GL10
 import com.badlogic.gdx.InputAdapter
 import com.rathboma.playpen.util.Logging
 import com.rathboma.playpen.PlaypenGame
+import com.rathboma.playpen.scene2d.Scene2DScreen
 
 class MenuScreen(game: PlaypenGame) extends InputAdapter with Screen with Logging {
   Gdx.input.setInputProcessor(this)
@@ -24,24 +25,25 @@ class MenuScreen(game: PlaypenGame) extends InputAdapter with Screen with Loggin
   val renderer = new ShapeRenderer()
 
   val middle = game.width / 2
-  val thirdHeight = game.height / 3
+  val quarterHeight = game.height / 4
 
-  val box2dButton = new SimpleButton("Box2D Demo", middle, thirdHeight)
-  val animationButton = new SimpleButton("Character Animation",middle, thirdHeight*2 )
-  var updateAction: Option[Int] = None
-  box2dButton.onTouch {
-    game.setScreen(new Box2DPlayerScreen(game))
-    true
-  }
-  animationButton.onTouch {
-    game.setScreen(new SpriteAnimationScreen(game))
-    true
-  }
+  val box2dButton = new SimpleButton("Box2D Demo", middle, quarterHeight)({
+      game.setScreen(new Box2DPlayerScreen(game))
+      true
+    })
+  val animationButton = new SimpleButton("Character Animation",middle, quarterHeight*2)({
+      game.setScreen(new SpriteAnimationScreen(game))
+      true
+    })
 
-  val buttons = List(box2dButton, animationButton)
+  val scene2dButton = new SimpleButton("Scene2D", middle, quarterHeight*3)({
+    game.setScreen(new Scene2DScreen(game))
+    true
+    })
+
+  val buttons = List(box2dButton, animationButton, scene2dButton)
 
   def render(delta: Float) {
-    
 
     Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT); 
     buttons.foreach{button =>

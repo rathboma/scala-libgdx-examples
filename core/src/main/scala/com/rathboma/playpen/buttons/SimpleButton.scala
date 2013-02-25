@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment
 import com.rathboma.playpen.util.Logging
 
-class SimpleButton(text: String, x: Int, y: Int) extends Logging {
+class SimpleButton(text: String, x: Int, y: Int)(func: => Boolean) extends Logging {
 
   val font = new BitmapFont()
   val bounds = font.getBounds(text)
@@ -19,11 +19,6 @@ class SimpleButton(text: String, x: Int, y: Int) extends Logging {
   var pressed = false
   var down = false
 
-  var touchFunc: () => Boolean = () => {false}
-
-  def onTouch(func: => Boolean) {
-    touchFunc = () => func
-  }
 
   def touchDown() = {
     down = true
@@ -31,7 +26,7 @@ class SimpleButton(text: String, x: Int, y: Int) extends Logging {
 
   def touchUp() = {
     down = false
-    touchFunc()
+    func
   }
 
   def includes(xt: Int, yt: Int): Boolean = {
