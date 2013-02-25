@@ -29,6 +29,10 @@ Currently Implemented
 
 1. Box2D platformer character contols [demo'd on the badlogicgames blog](http://www.badlogicgames.com/wordpress/?p=2017)
   * see com/rathboma/playpen/box2dcharacter
+2. Sprite Animation
+  * see com/rathboma/playpen/animation
+3. Scene2D
+  * see com/rathboma/playpen/scene2d
 
 
 LICENSE:
